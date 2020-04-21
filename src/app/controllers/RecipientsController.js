@@ -13,6 +13,7 @@ class RecipientController {
     }
     const recipients = await Recipients.findAll({
       attributes: [
+        'id',
         'name',
         'street',
         'number',

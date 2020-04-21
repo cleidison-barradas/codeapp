@@ -8,7 +8,7 @@ class DeliverymanController {
     const { textsearch } = req.query;
 
     const Deliveryman = await DeliveryMan.findAll({
-      attributes: ['name', 'email'],
+      attributes: ['id', 'name', 'email'],
       where: {
         name: { [Op.iLike]: textsearch ? `%${textsearch}%` : '%%' }
       },
