@@ -44,10 +44,32 @@ class DeliveryController {
   async show(req, res) {
     const { delivery_id } = req.params;
 
-    const delivery = await Delivery.findByPk(delivery_id);
-    if (!delivery) {
+    if (!delivery_id) {
       return res.status(400).json({ error: 'Delivery does not exists' });
     }
+    const delivery = await Delivery.findOne({
+      attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
+      where: {
+        delivery_id
+      },
+      include: [
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['id', 'name', 'email']
+        },
+        {
+          model: Recipient,
+          as: 'recipients',
+          attributes: ['id', 'name', 'street', 'city', 'state', 'zip_code']
+        },
+        {
+          model: File,
+          as: 'signature',
+          attributes: ['id', 'path', 'url']
+        }
+      ]
+    });
     return res.json(delivery);
   }
 
