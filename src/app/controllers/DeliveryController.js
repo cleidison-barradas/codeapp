@@ -42,7 +42,7 @@ class DeliveryController {
   }
 
   async show(req, res) {
-    const { delivery_id } = req.params;
+    const { delivery_id } = req.query;
 
     if (!delivery_id) {
       return res.status(400).json({ error: 'Delivery does not exists' });
@@ -50,7 +50,7 @@ class DeliveryController {
     const delivery = await Delivery.findOne({
       attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
       where: {
-        delivery_id
+        id: delivery_id
       },
       include: [
         {
@@ -131,7 +131,7 @@ class DeliveryController {
     }
     await deliveryEdit.destroy();
 
-    return res.json();
+    return res.status(200).json(deliveryEdit);
   }
 }
 export default new DeliveryController();

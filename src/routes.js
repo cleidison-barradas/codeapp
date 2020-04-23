@@ -24,7 +24,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(AuthMiddleware);
 
-routes.post('/files', uploads.single('file'), FileController.store);
+routes.post('/files/', uploads.single('file'), FileController.store);
 
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
@@ -55,7 +55,7 @@ routes.get(
 );
 
 routes.get('/delivery', DeliveryController.index);
-routes.get('/delivery/:delivery_id', DeliveryController.show);
+routes.get('/delivery-edit', DeliveryController.show);
 routes.post('/delivery', DeliveryController.store);
 routes.put('/delivery/:delivery_id', DeliveryController.update);
 routes.delete('/delivery/:delivery_id', DeliveryController.delete);
