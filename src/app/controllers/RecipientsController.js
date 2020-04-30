@@ -1,5 +1,6 @@
 import { Op } from 'sequelize';
 import Recipients from '../models/Recipient';
+import Delivery from '../models/Delivery';
 
 import User from '../models/User';
 
@@ -63,7 +64,19 @@ class RecipientController {
 
   async delete(req, res) {
     const { id } = req.params;
+
     const recipient = await Recipients.findByPk(id);
+
+    const delivery = await Delivery.findAll({
+      where: {
+        recipient_id: id
+      }
+    });
+    if (delivery) {
+      return res
+        .status(400)
+        .json({ error: 'Exists deliveries with this recipient' });
+    }
 
     if (!recipient) {
       return res.status(400).json({ error: 'Recipient does not found' });

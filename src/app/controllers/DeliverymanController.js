@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import DeliveryMan from '../models/Deliveryman';
+import Delivery from '../models/Delivery';
 import File from '../models/File';
 
 class DeliverymanController {
@@ -79,9 +80,15 @@ class DeliverymanController {
     const { deliveryman_id } = req.params;
 
     const deliveryman = await DeliveryMan.findByPk(deliveryman_id);
+    const delivery = await Delivery.findByPk(deliveryman_id);
 
     if (!deliveryman) {
-      return res.status(400).json({ error: 'User does not found' });
+      return res.status(400).json({ error: 'Deliveryman does not found' });
+    }
+    if (delivery) {
+      return res
+        .status(400)
+        .json({ error: 'Deliveryman has must be deliveries' });
     }
 
     await deliveryman.destroy();

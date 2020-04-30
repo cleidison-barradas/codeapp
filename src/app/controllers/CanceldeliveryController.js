@@ -21,7 +21,7 @@ class CanceldeliveryController {
       ]
     });
     if (!deliveryUpdate) {
-      return res.status(400).json({ error: 'Delivery does not found' });
+      return res.status(400).json({ error: 'Delivery has been canceled' });
     }
 
     deliveryUpdate.canceled_at = new Date();
