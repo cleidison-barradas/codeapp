@@ -34,7 +34,7 @@ routes.get('/recipients', RecipientController.index);
 routes.get('/recipients/:id', RecipientController.show);
 routes.post('/recipients', RecipientController.store);
 routes.put('/recipients/:id', RecipientController.update);
-routes.delete('/recipients', RecipientController.delete);
+routes.delete('/recipients/:id', RecipientController.delete);
 
 routes.get('/deliveryman', DeliverymanController.index);
 routes.get('/deliveryman/:deliveryman_id', DeliverymanController.show);
@@ -44,7 +44,6 @@ routes.delete('/deliveryman/:deliveryman_id', DeliverymanController.delete);
 
 routes.get(
   '/deliveryman/:deliveryman_id/mydeliveries',
-
   MydeliveriesController.index
 );
 
