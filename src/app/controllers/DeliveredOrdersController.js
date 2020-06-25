@@ -7,7 +7,7 @@ class DeliveredOrdersController {
   async index(req, res) {
     const { deliveryman_id } = req.params;
     const mydeliveries = await Delivery.findAll({
-      attributes: ['product', 'end_date'],
+      attributes: ['product', 'start_date', 'end_date', 'canceled_at'],
       where: {
         deliveryman_id,
         end_date: { [Op.not]: null }

@@ -1,4 +1,6 @@
+require('dotenv/config');
+
 export default {
-  host: '192.168.99.100',
-  port: 6379
+  host: process.env.RD_HOST,
+  port: process.env.RD_PORT
 };

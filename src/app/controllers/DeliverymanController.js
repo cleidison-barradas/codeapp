@@ -88,7 +88,7 @@ class DeliverymanController {
     if (delivery) {
       return res
         .status(400)
-        .json({ error: 'Deliveryman has must be deliveries' });
+        .json({ error: 'Deliveryman has must no deliveries' });
     }
 
     await deliveryman.destroy();

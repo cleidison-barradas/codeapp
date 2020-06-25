@@ -8,7 +8,7 @@ class FinishdeliveryController {
     if (!deliveryEdit) {
       return res.status(400).json({ error: 'Delivery does not found' });
     }
-    await deliveryEdit.update(req.body);
+    deliveryEdit.update(req.body);
 
     return res.json(deliveryEdit);
   }

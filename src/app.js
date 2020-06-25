@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import cors from 'cors';
 import path from 'path';
 import express from 'express';
@@ -17,7 +18,7 @@ class App {
     this.server.use(express.json());
     this.server.use(
       '/files/',
-      express.static(path.resolve(__dirname, '..', 'temp', 'uploads'))
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
     );
   }
 

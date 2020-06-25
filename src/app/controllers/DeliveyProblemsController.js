@@ -7,7 +7,7 @@ import Deliveryman from '../models/Deliveryman';
 class DeliveryProblemsController {
   async index(req, res) {
     const deliveryProblem = await DeliveryProblems.findAll({
-      attributes: ['description', 'createdAt'],
+      attributes: ['id', 'description', 'createdAt'],
 
       include: [
         {
@@ -50,7 +50,7 @@ class DeliveryProblemsController {
   async show(req, res) {
     const { delivery_id } = req.params;
     const deliveryProblem = await DeliveryProblems.findAll({
-      attributes: ['description', 'createdAt'],
+      attributes: ['id', 'description', 'createdAt'],
       where: {
         delivery_id
       },
